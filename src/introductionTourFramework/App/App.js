@@ -19,13 +19,21 @@ function App({ title, children, className = null }) {
   //   console.log(el);
   // });
 
+  // const testApi = ctx.apiService.getElements().then(console.log);
+  ctx.apiService.getElements().then(r => {
+    console.log(r.data.data.elements);
+    // r.data.data.elements.array.forEach(element => {
+    //   console.log(element);
+    // });
+  });
+
   const addDescription = async text => {
     setDescription(text);
     addElement(path, text);
   };
   const selectElement = e => {
     if (!isAdmin()) return;
-    if (!ctx) return;
+    if (!ctx.isStartAddElements) return;
     // console.log(e.nativeEvent.path);
     const element = e.target;
     // console.log(e.target.id);
@@ -43,7 +51,7 @@ function App({ title, children, className = null }) {
   };
 
   useEffect(() => {
-    // if (!ctx) return;
+    // if (!ctx.isStartAddElements) return;
     // console.log(backdropRef.current);
     function noopElements(ref) {
       let nodeArr = [];
@@ -54,7 +62,7 @@ function App({ title, children, className = null }) {
         for (const element of elements) {
           //! баг якщо вже є дісаблед
 
-          if (!ctx) {
+          if (!ctx.isStartAddElements) {
             element.removeAttribute('disabled');
             element.classList.remove(`${styles.Clear}`);
             element.classList.remove(`${styles.SelectClass}`);
@@ -71,7 +79,7 @@ function App({ title, children, className = null }) {
     }
 
     console.log(noopElements(backdropRef.current));
-  }, [ctx]);
+  }, [ctx.isStartAddElements]);
 
   // useMemo(() => function, input)
   return (

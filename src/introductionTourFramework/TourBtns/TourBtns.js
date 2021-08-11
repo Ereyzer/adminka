@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './TourBtns.module.css';
+import controlBtnsOnOfContext from '../helpers/context';
 
 export function TourBtns({ changeIsStartAddElements }) {
-  // const ctx = useContext();
+  const ctx = useContext(controlBtnsOnOfContext);
   const [status, setStatus] = useState(false);
   const [side, setSide] = useState('false');
   useEffect(() => {
@@ -17,8 +18,10 @@ export function TourBtns({ changeIsStartAddElements }) {
     console.log(this.testClick);
   };
   const onConsol = () => {
-    const arr = window.localStorage.getItem('arr');
-    console.log(arr);
+    const elements = window.localStorage.getItem('elements');
+    // console.log(ctx.apiService);
+    ctx.apiService.postElements(JSON.parse(elements));
+    console.log(elements);
   };
 
   return createPortal(

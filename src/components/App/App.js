@@ -10,6 +10,10 @@ import { testFunc } from '../../service/helpers/filterTest';
 import { Example } from '../Example/Example';
 import { TourBackdrop } from '../../introductionTourFramework/TourBackdropBtns/TourBackdrop';
 
+const tourConfig = {
+  baseUrl: 'https://my-server-app-introdution.herokuapp.com/',
+};
+
 function App() {
   const [contacts, setContacts] = useState([]);
   const [filter, setFilter] = useState('');
@@ -57,7 +61,7 @@ function App() {
   }, []);
 
   return (
-    <TourBackdrop>
+    <TourBackdrop config={tourConfig}>
       <h1>Phonebook</h1>
       <ContactForm handleSubmit={handleSubmit} />
 

@@ -21,7 +21,7 @@ function App({ title, children, className = null }) {
 
   // const testApi = ctx.apiService.getElements().then(console.log);
   ctx.apiService.getElements().then(r => {
-    console.log(r.data.data.elements);
+    console.log(r.data);
     // r.data.data.elements.array.forEach(element => {
     //   console.log(element);
     // });

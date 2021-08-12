@@ -12,6 +12,7 @@ import { TourBackdrop } from '../../introductionTourFramework/TourBackdropBtns/T
 
 const tourConfig = {
   baseUrl: 'https://my-server-app-introdution.herokuapp.com/',
+  // baseUrl: 'http://localhost:4444',
 };
 
 function App() {

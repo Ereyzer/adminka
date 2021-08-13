@@ -1,6 +1,6 @@
 const elements = [];
 
-export function addElement(oldPath, description) {
+export function addElement(oldPath, description, addToDbFunc) {
   let isContainer = false;
   const path = [...oldPath].reverse().reduce((acc, el) => {
     if (el.nodeName && el.nodeName !== '#document') {
@@ -18,6 +18,8 @@ export function addElement(oldPath, description) {
   }, '');
   elements.push({ path, description });
   addLocaleStorage();
+  console.log(path, description);
+  addToDbFunc(s => [...s, { path, description }]);
   return console.log(elements);
 }
 

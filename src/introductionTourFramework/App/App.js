@@ -20,16 +20,20 @@ function App({ title, children, className = null }) {
   // });
 
   // const testApi = ctx.apiService.getElements().then(console.log);
+  //! Example how to get element
   ctx.apiService.getElements().then(r => {
     console.log(r.data);
+    ctx.apiService.searchNewElements(r.data);
     // r.data.data.elements.array.forEach(element => {
     //   console.log(element);
     // });
   });
+  //! Example how to delete element
+  ctx.apiService.delElement('6116c9bcad9fb632e4ff6b91');
 
   const addDescription = async text => {
     setDescription(text);
-    addElement(path, text);
+    addElement(path, text, ctx.setElements);
   };
   const selectElement = e => {
     if (!isAdmin()) return;

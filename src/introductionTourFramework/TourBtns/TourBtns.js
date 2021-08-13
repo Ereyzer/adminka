@@ -18,10 +18,11 @@ export function TourBtns({ changeIsStartAddElements }) {
     console.log(this.testClick);
   };
   const onConsol = () => {
-    const elements = window.localStorage.getItem('elements');
+    // const elements = window.localStorage.getItem('elements');
     // console.log(ctx.apiService);
-    ctx.apiService.postElements(JSON.parse(elements));
-    console.log(elements);
+    console.log(ctx.elements);
+    ctx.apiService.postElements(ctx.elements);
+    // console.log(elements);
   };
 
   return createPortal(

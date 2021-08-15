@@ -18,18 +18,25 @@ function App({ title, children, className = null }) {
   //   const el = document.querySelector(element.path);
   //   console.log(el);
   // });
-
+  console.log(ctx.elements);
+  ctx.elements.forEach(element => {
+    console.log(
+      document.querySelector(element.path),
+      'description: ',
+      element.description,
+    );
+  });
   // const testApi = ctx.apiService.getElements().then(console.log);
   //! Example how to get element
-  ctx.apiService.getElements().then(r => {
-    console.log(r.data);
-    ctx.apiService.searchNewElements(r.data);
-    // r.data.data.elements.array.forEach(element => {
-    //   console.log(element);
-    // });
-  });
+  // ctx.apiService.getElements().then(r => {
+  //   console.log(r.data);
+  //   ctx.apiService.searchNewElements(r.data);
+  //   // r.data.data.elements.array.forEach(element => {
+  //   //   console.log(element);
+  //   // });
+  // });
   //! Example how to delete element
-  ctx.apiService.delElement('6116c9bcad9fb632e4ff6b91');
+  // ctx.apiService.delElement('6116c9bcad9fb632e4ff6b91');
 
   const addDescription = async text => {
     setDescription(text);
@@ -55,8 +62,6 @@ function App({ title, children, className = null }) {
   };
 
   useEffect(() => {
-    // if (!ctx.isStartAddElements) return;
-    // console.log(backdropRef.current);
     function noopElements(ref) {
       let nodeArr = [];
 
@@ -72,6 +77,7 @@ function App({ title, children, className = null }) {
             element.classList.remove(`${styles.SelectClass}`);
           } else {
             // element.onFocus = selectElement;
+            console.log(element.attributes);
             element.setAttribute('disabled', 'true');
             element.classList.add(`${styles.Clear}`);
           }

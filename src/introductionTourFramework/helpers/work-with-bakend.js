@@ -5,13 +5,13 @@ class ApiService {
     this.BASE_URL = baseUrl;
   }
 
-  postElements(data1) {
-    console.log(data1.filter(element => !element['_id']));
+  postElements(newData) {
+    // console.log(data1.filter(element => !element['_id']));
     return axios({
       method: 'post',
       url: this.BASE_URL,
       data: {
-        data: this.searchNewElements(data1),
+        data: newData,
       },
     });
   }
@@ -26,9 +26,6 @@ class ApiService {
   }
 
   getElements() {
-    // return fetch('https://dry-beyond-52848.herokuapp.com/')
-    //   .then(r => console.log(r))
-    //   .catch(console.log);
     console.log('get');
     return axios
       .get(this.BASE_URL)
@@ -36,7 +33,7 @@ class ApiService {
       .catch(console.log);
   }
 
-  searchNewElements = data => data.filter(element => !element['_id']);
+  // searchNewElements = data => data.filter(element => !element['_id']);
 }
 
 export default ApiService;

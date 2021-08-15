@@ -18,7 +18,7 @@ class ApiService {
   delElement(id) {
     return axios({
       method: 'post',
-      url: `${this.BASE_URL}/${id}`,
+      url: `${this.BASE_URL}  ${id}`,
       data: {
         data: id,
       },

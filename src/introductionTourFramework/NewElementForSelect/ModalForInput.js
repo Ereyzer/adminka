@@ -1,5 +1,5 @@
 import { Backdrop } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './ModalForInput.module.css';
 
@@ -14,6 +14,17 @@ export function ModalForInput({ addDescription, closeModal }) {
   const backdropClick = e => {
     e.stopPropagation();
   };
+  useEffect(() => {
+    window.onscroll = function () {
+      window.scrollTo(0, 0);
+    };
+    return () => {
+      window.onscroll = function () {
+        window.scrollTo(0, 0);
+      };
+    };
+  }, []);
+
   return createPortal(
     <div className={styles.Backdrop} onClick={backdropClick}>
       <form onSubmit={handleSubmit}>
@@ -21,6 +32,7 @@ export function ModalForInput({ addDescription, closeModal }) {
           <textarea
             value={value}
             onChange={e => setValue(e.target.value)}
+            className={styles.Textarea}
           ></textarea>
         </label>
         <button type="submit">add description</button>

@@ -77,6 +77,15 @@ function App({ title, children, className = null }) {
             element.classList.remove(`${styles.SelectClass}`);
           } else {
             // element.onFocus = selectElement;
+            // if(element)
+            if (
+              ctx.elements.some(
+                el => document.querySelector(el.path) === element,
+              )
+            ) {
+              console.log('element in DB', element);
+              element.classList.add(`${styles.SelectClass}`);
+            }
             console.log(element.attributes);
             element.setAttribute('disabled', 'true');
             element.classList.add(`${styles.Clear}`);

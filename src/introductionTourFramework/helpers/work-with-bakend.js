@@ -18,7 +18,7 @@ class ApiService {
   delElement(id) {
     return axios({
       method: 'post',
-      url: `${this.BASE_URL}/${id}`,
+      url: `${this.BASE_URL}${id}`,
       data: {
         data: id,
       },
@@ -37,7 +37,7 @@ class ApiService {
 }
 
 export default ApiService;
-//! Example how to get element
+// //! Example how to get element
 // ctx.apiService.getElements().then(r => {
 //   console.log(r.data);
 //   ctx.apiService.searchNewElements(r.data);
@@ -45,5 +45,5 @@ export default ApiService;
 //   //   console.log(element);
 //   // });
 // });
-//! Example how to delete element
+// ! Example how to delete element
 // ctx.apiService.delElement('6116addd87426e4ae055c211');

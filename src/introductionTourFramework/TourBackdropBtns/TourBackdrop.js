@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react';
+
 import { TourBtns } from '../TourBtns/TourBtns';
 import controlBtnsOnOfContext from '../helpers/context';
 import { isAdmin } from '../helpers/isAdmin';
 import ApiService from '../helpers/work-with-bakend';
+import ModalMain from '../ModalMain/ModalMain';
+
 import '../Interface/Interface';
 
 function reducer(state, action) {
@@ -15,6 +18,7 @@ function reducer(state, action) {
       throw new Error();
   }
 }
+
 export function TourBackdrop({ className = null, children, config }) {
   const apiService = new ApiService(config);
   const [isStartAddElements, setIsStartAddElements] = useState(false);
@@ -47,6 +51,8 @@ export function TourBackdrop({ className = null, children, config }) {
           <TourBtns changeIsStartAddElements={setIsStartAddElements} />
         )}
       </div>
+
+      {isAdminT && <ModalMain dispatch={dispatch} />}
     </controlBtnsOnOfContext.Provider>
   );
 }

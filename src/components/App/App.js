@@ -9,7 +9,6 @@ import { addLocalStorage } from '../../service/helpers/localeStorage';
 import { testFunc } from '../../service/helpers/filterTest';
 import { Example } from '../Example/Example';
 import { TourBackdrop } from '../../introductionTourFramework/TourBackdropBtns/TourBackdrop';
-import Tour from '../Tour/Tour';
 
 const tourConfig = {
   baseUrl: 'https://my-server-app-introdution.herokuapp.com/',
@@ -64,7 +63,6 @@ function App() {
 
   return (
     <>
-      <Tour />
       <TourBackdrop config={tourConfig}>
         <h1>Phonebook</h1>
         <ContactForm handleSubmit={handleSubmit} />

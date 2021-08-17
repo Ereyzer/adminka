@@ -1,9 +1,10 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useContext } from 'react';
 import JoyRide, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
+import controlBtnsOnOfContext from '../helpers/context';
 
 const TOUR_STEPS = [
   {
-    target: '.ContactForm_Input__1eoVA',
+    target: '[tour-attribute="formForAddContacts"] form input[name="name"]',
     content: 'Write the name of the subscriber',
   },
 
@@ -54,6 +55,8 @@ const reducer = (state = INITIAL_STATE, action) => {
 };
 
 const Tour = () => {
+  const ctx = useContext(controlBtnsOnOfContext);
+  console.log(ctx);
   const [tourState, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   useEffect(() => {

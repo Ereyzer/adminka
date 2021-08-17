@@ -2,13 +2,17 @@ import React, { useState, useRef, useEffect, useReducer } from 'react';
 
 import { TourBtns } from '../TourBtns/TourBtns';
 import controlBtnsOnOfContext from '../helpers/context';
-import { isAdmin } from '../helpers/isAdmin';
+// import { isAdmin } from '../helpers/isAdmin';
 import ApiService from '../helpers/work-with-bakend';
 import ModalMain from '../ModalMain/ModalMain';
-
 import '../Interface/Interface';
+// const ModalMain = React.lazy(() =>
+//   import('../ModalMain/ModalMain' /* webpackChunkName: "modal-view" */),
+// );
+import Tour from '../Tour/Tour';
 
 function reducer(state, action) {
+  console.log('state', state);
   switch (action.type) {
     case 'on':
       return true;
@@ -50,6 +54,7 @@ export function TourBackdrop({ className = null, children, config }) {
     >
       <div className={className}>
         {children}
+        <Tour />
         {isAdminB && (
           <TourBtns changeIsStartAddElements={setIsStartAddElements} />
         )}

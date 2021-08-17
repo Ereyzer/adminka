@@ -17,7 +17,7 @@ const TOUR_STEPS = [
     content: 'Start typing a contact name to filter',
   },
   {
-    target: '.ContactList_Button__KApor',
+    target: '[tour-attribute="listOfContacts"] ul li div',
     content: 'You can delete a contact',
   },
 ];

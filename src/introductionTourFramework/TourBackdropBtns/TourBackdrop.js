@@ -1,8 +1,11 @@
 import React, { useState, useRef, useEffect, useReducer } from 'react';
+
 import { TourBtns } from '../TourBtns/TourBtns';
 import controlBtnsOnOfContext from '../helpers/context';
 import { isAdmin } from '../helpers/isAdmin';
 import ApiService from '../helpers/work-with-bakend';
+import ModalMain from '../ModalMain/ModalMain';
+
 import '../Interface/Interface';
 
 function reducer(state, action) {
@@ -15,15 +18,17 @@ function reducer(state, action) {
       throw new Error();
   }
 }
+
 export function TourBackdrop({ className = null, children, config }) {
   const apiService = new ApiService(config);
   const [isStartAddElements, setIsStartAddElements] = useState(false);
   const [elements, setElements] = useState([]);
-  const [isAdminT, dispatch] = useReducer(reducer, false);
-  console.log(isAdminT);
+  const [isAdminM, dispatchModal] = useReducer(reducer, false);
+  const [isAdminB, dispatchButton] = useReducer(reducer, false);
+  console.log(isAdminM);
 
   useEffect(() => {
-    runOnKeys(dispatch, 'KeyL', 'KeyS', 'KeyD');
+    runOnKeys(dispatchModal, 'KeyL', 'KeyS', 'KeyD');
     // if (keyListener.current) {
     //   console.log('s');
     //   window.addEventListener('keypress', onKeyPressClick);
@@ -39,46 +44,26 @@ export function TourBackdrop({ className = null, children, config }) {
         apiService: apiService,
         elements,
         setElements,
+        dispatchModal,
+        dispatchButton,
       }}
     >
       <div className={className}>
         {children}
-        {isAdmin() && (
+        {isAdminB && (
           <TourBtns changeIsStartAddElements={setIsStartAddElements} />
         )}
       </div>
+
+      {isAdminM && (
+        <ModalMain
+          dispatchModal={dispatchModal}
+          dispatchButton={dispatchButton}
+        />
+      )}
     </controlBtnsOnOfContext.Provider>
   );
 }
-
-// function onKeyPressClick(e) {
-//   if (e.code !== 'KeyL') return;
-
-//   window.addEventListener('keydown', onKeydownClick);
-
-//   console.log(e);
-// }
-
-// function onKeydownClick(e) {
-//   console.log(11111111111111111111111111111111111111, e);
-//   if (e.code !== 'keyS') {
-//     window.removeEventListener('keydown', onKeydownClick);
-//   } else {
-//     window.addEventListener('keyup', onKeyUp);
-//     console.log(e);
-//   }
-// }
-
-// function onKeyUp(e) {
-//   if (e.code !== 'KeyD') {
-//     window.removeEventListener('keydown', onKeydownClick);
-//     window.removeEventListener('keyup', onKeyUp);
-//   } else {
-//     console.log('it working');
-//     window.removeEventListener('keydown', onKeydownClick);
-//     window.removeEventListener('keyup', onKeyUp);
-//   }
-// }
 
 function runOnKeys(func, ...codes) {
   let pressed = new Set();
@@ -95,7 +80,7 @@ function runOnKeys(func, ...codes) {
 
     pressed.clear();
 
-    // dispatch();
+    // dispatchModal();
     func({ type: 'on' });
   });
 

@@ -1,4 +1,3 @@
-import { Backdrop } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './ModalForInput.module.css';

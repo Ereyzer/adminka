@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect, useContext } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './TourBtns.module.css';
 import controlBtnsOnOfContext from '../helpers/context';
+import Button from '../Button/Button';
 
 export function TourBtns({ changeIsStartAddElements }) {
   const ctx = useContext(controlBtnsOnOfContext);
@@ -13,35 +14,33 @@ export function TourBtns({ changeIsStartAddElements }) {
 
   // console.log(ctx);
 
-  const startStopFunc = event => {
-    // this.testClick = !this.testClick;
-    console.log(this.testClick);
-  };
-  const onConsol = () => {
+  const addSelectItem = () => {
     // const elements = window.localStorage.getItem('elements');
     // console.log(ctx.apiService);
     console.log(ctx.elements);
-    ctx.apiService.postElements(ctx.elements);
-    // console.log(elements);
+    // ctx.apiService.postElements(ctx.elements);
+    // console.log(elements);\
+    ctx.dispatchModal({ type: 'on' });
+    ctx.dispatchButton({ type: 'off' });
   };
 
   return createPortal(
     <div className={styles[`${side ? 'BlockBottom' : 'BlockTop'}`]}>
-      <button
+      <Button
         onClick={() => setStatus(s => !s)}
         id="switch-work-administrator"
         className={styles.ButtonStart}
       >
         {status ? 'stop' : 'start'}
-      </button>
-      <button
-        onClick={onConsol}
+      </Button>
+      <Button
+        onClick={addSelectItem}
         className={styles.ButtonStart}
         id="add-selected-items"
       >
         add selected items
-      </button>
-      <button onClick={() => setSide(s => !s)}>{side ? '▲' : '▼'}</button>
+      </Button>
+      <Button onClick={() => setSide(s => !s)}>{side ? '▲' : '▼'}</Button>
     </div>,
     document.getElementById('tour-buttons-container'),
   );

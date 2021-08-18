@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/adminka/static/css/main.2d6a9272.chunk.css",
+    "main.js": "/adminka/static/js/main.7f20e3f3.chunk.js",
+    "main.js.map": "/adminka/static/js/main.7f20e3f3.chunk.js.map",
+    "runtime-main.js": "/adminka/static/js/runtime-main.0a702543.js",
+    "runtime-main.js.map": "/adminka/static/js/runtime-main.0a702543.js.map",
+    "static/css/2.68b64559.chunk.css": "/adminka/static/css/2.68b64559.chunk.css",
+    "static/js/2.a30513af.chunk.js": "/adminka/static/js/2.a30513af.chunk.js",
+    "static/js/2.a30513af.chunk.js.map": "/adminka/static/js/2.a30513af.chunk.js.map",
+    "index.html": "/adminka/index.html",
+    "static/css/2.68b64559.chunk.css.map": "/adminka/static/css/2.68b64559.chunk.css.map",
+    "static/css/main.2d6a9272.chunk.css.map": "/adminka/static/css/main.2d6a9272.chunk.css.map",
+    "static/js/2.a30513af.chunk.js.LICENSE.txt": "/adminka/static/js/2.a30513af.chunk.js.LICENSE.txt",
+    "static/js/main.7f20e3f3.chunk.js.LICENSE.txt": "/adminka/static/js/main.7f20e3f3.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.0a702543.js",
+    "static/css/2.68b64559.chunk.css",
+    "static/js/2.a30513af.chunk.js",
+    "static/css/main.2d6a9272.chunk.css",
+    "static/js/main.7f20e3f3.chunk.js"
+  ]
+}

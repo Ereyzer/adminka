@@ -6,13 +6,14 @@ import controlBtnsOnOfContext from '../helpers/context';
 import ApiService from '../helpers/work-with-bakend';
 import ModalMain from '../ModalMain/ModalMain';
 import '../Interface/Interface';
+import { NewDom } from '../NewDom/NewDom';
 // const ModalMain = React.lazy(() =>
 //   import('../ModalMain/ModalMain' /* webpackChunkName: "modal-view" */),
 // );
 import Tour from '../Tour/Tour';
 
 function reducer(state, action) {
-  console.log('state', state);
+  // console.log('state', state);
   switch (action.type) {
     case 'on':
       return true;
@@ -29,7 +30,12 @@ export function TourBackdrop({ className = null, children, config }) {
   const [elements, setElements] = useState([]);
   const [isAdminM, dispatchModal] = useReducer(reducer, false);
   const [isAdminB, dispatchButton] = useReducer(reducer, false);
-  console.log(isAdminM);
+  const [myTestNewDom, setMyTestNewDom] = useState(true);
+  const [isModalDescription, setIsModalDescription] = useState(false);
+  const [path, setPath] = useState('');
+  const backdropRef = useRef(null);
+
+  // console.log(isAdminM);
 
   useEffect(() => {
     runOnKeys(dispatchModal, 'KeyL', 'KeyS', 'KeyD');
@@ -50,11 +56,16 @@ export function TourBackdrop({ className = null, children, config }) {
         setElements,
         dispatchModal,
         dispatchButton,
+        reducer,
+        path,
+        setPath,
+        isModalDescription,
+        setIsModalDescription,
       }}
     >
-      <div className={className}>
+      <div className={className} ref={backdropRef}>
         {children}
-        <Tour />
+        {!isAdminM && !isAdminB && <Tour />}
         {isAdminB && (
           <TourBtns changeIsStartAddElements={setIsStartAddElements} />
         )}
@@ -65,6 +76,9 @@ export function TourBackdrop({ className = null, children, config }) {
           dispatchModal={dispatchModal}
           dispatchButton={dispatchButton}
         />
+      )}
+      {backdropRef.current && isAdminB && isStartAddElements && (
+        <NewDom reference={backdropRef.current} />
       )}
     </controlBtnsOnOfContext.Provider>
   );

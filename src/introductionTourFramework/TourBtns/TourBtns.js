@@ -1,13 +1,21 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React, {
+  useRef,
+  useState,
+  useEffect,
+  useContext,
+  useReducer,
+} from 'react';
 import { createPortal } from 'react-dom';
 import styles from './TourBtns.module.css';
 import controlBtnsOnOfContext from '../helpers/context';
 import Button from '../Button/Button';
+import { CreateWrapper } from '../adminkaInterface/CreateWrapper';
 
 export function TourBtns({ changeIsStartAddElements }) {
   const ctx = useContext(controlBtnsOnOfContext);
   const [status, setStatus] = useState(false);
-  const [side, setSide] = useState('false');
+  const [side, setSide] = useState(false);
+
   useEffect(() => {
     changeIsStartAddElements(status);
   }, [status]);
@@ -41,6 +49,7 @@ export function TourBtns({ changeIsStartAddElements }) {
         add selected items
       </Button>
       <Button onClick={() => setSide(s => !s)}>{side ? '▲' : '▼'}</Button>
+      <CreateWrapper />
     </div>,
     document.getElementById('tour-buttons-container'),
   );

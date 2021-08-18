@@ -13,16 +13,6 @@ export function ModalForInput({ addDescription, closeModal }) {
   const backdropClick = e => {
     e.stopPropagation();
   };
-  useEffect(() => {
-    window.onscroll = function () {
-      window.scrollTo(0, 0);
-    };
-    return () => {
-      window.onscroll = function () {
-        window.scrollTo(0, 0);
-      };
-    };
-  }, []);
 
   return createPortal(
     <div className={styles.Backdrop} onClick={backdropClick}>

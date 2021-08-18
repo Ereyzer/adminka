@@ -4,6 +4,7 @@
 }
 
 .Clear:hover {
+  background-color: brown;
   color: green;
 }
 

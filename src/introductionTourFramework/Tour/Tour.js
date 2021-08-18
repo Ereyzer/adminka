@@ -1,11 +1,11 @@
 import React, { useReducer, useEffect, useContext } from 'react';
 import JoyRide, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
-import controlBtnsOnOfContext from '../helpers/context';
 
 const TOUR_STEPS = [
   {
     target: '[tour-attribute="formForAddContacts"] form input[name="name"]',
     content: 'Write the name of the subscriber',
+    disableBeacon: true,
   },
 
   {
@@ -55,8 +55,6 @@ const reducer = (state = INITIAL_STATE, action) => {
 };
 
 const Tour = () => {
-  const ctx = useContext(controlBtnsOnOfContext);
-  console.log(ctx);
   const [tourState, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   useEffect(() => {
@@ -107,12 +105,6 @@ const Tour = () => {
           },
           buttonBack: {
             marginRight: 10,
-          },
-          beacon: {
-            position: 'fixed',
-            top: '0',
-            left: '20px',
-            fill: 'rgba(0, 139, 139, 0.845)',
           },
           buttonClose: {
             color: 'red',

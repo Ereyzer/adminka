@@ -1,60 +1,82 @@
 import React, { useReducer, useEffect, useContext } from 'react';
 import JoyRide, { ACTIONS, EVENTS, STATUS } from 'react-joyride';
-
-const TOUR_STEPS = [
-  {
-    target: '[tour-attribute="formForAddContacts"] form input[name="name"]',
-    content: 'Write the name of the subscriber',
-    disableBeacon: true,
-  },
-
-  {
-    target: '.MuiButton-label',
-    content: 'Save the contact',
-  },
-  {
-    target: '.Filter_Input__2-B-n',
-    content: 'Start typing a contact name to filter',
-  },
-  {
-    target: '[tour-attribute="listOfContacts"] ul li div',
-    content: 'You can delete a contact',
-  },
-];
-
-const INITIAL_STATE = {
-  key: new Date(),
-  run: false,
-  continuous: true,
-  loading: false,
-  stepIndex: 0,
-  steps: TOUR_STEPS,
-};
-
-const reducer = (state = INITIAL_STATE, action) => {
-  switch (action.type) {
-    case 'START':
-      return { ...state, run: true };
-    case 'RESET':
-      return { ...state, stepIndex: 0 };
-    case 'STOP':
-      return { ...state, run: false };
-    case 'NEXT_OR_PREV':
-      return { ...state, ...action.payload };
-    case 'RESTART':
-      return {
-        ...state,
-        stepIndex: 0,
-        run: true,
-        loading: false,
-        key: new Date(),
-      };
-    default:
-      return state;
-  }
-};
+import controlBtnsOnOfContext from '../helpers/context';
 
 const Tour = () => {
+  const ctx = useContext(controlBtnsOnOfContext);
+  const elements = ctx.elements;
+
+  const arrayOfElements = () =>
+    elements.map(({ description, path }) => {
+      return { target: path, content: description };
+    });
+
+  const arrayEl = arrayOfElements();
+  console.log(arrayEl);
+
+  const TOUR_STEPS = [
+    {
+      target: '[tour-attribute="formForAddContacts"] form input[name="name"]',
+      content: 'Write the name of the subscriber',
+      disableBeacon: true,
+    },
+
+    {
+      target: '.MuiButton-label',
+      content: 'Save the contact',
+    },
+    {
+      target: '.Filter_Input__2-B-n',
+      content: 'Start typing a contact name to filter',
+    },
+    {
+      target: '[tour-attribute="listOfContacts"] ul li div',
+      content: 'You can delete a contact',
+    },
+    // ...arrayEl,
+  ];
+
+  // const changeStep = () => {
+  //   TOUR_STEPS.push(...arrayEl);
+
+  // console.log(TOUR_STEPS);
+  // return TOUR_STEPS;
+  // }
+
+  // const takeStep = () => changeStep();
+
+  const INITIAL_STATE = {
+    key: new Date(),
+    run: false,
+    continuous: true,
+    loading: false,
+    stepIndex: 0,
+    steps: TOUR_STEPS,
+  };
+
+  const reducer = (state = INITIAL_STATE, action) => {
+    switch (action.type) {
+      case 'START':
+        return { ...state, run: true };
+      case 'RESET':
+        return { ...state, stepIndex: 0 };
+      case 'STOP':
+        return { ...state, run: false };
+      case 'NEXT_OR_PREV':
+        return { ...state, ...action.payload };
+      case 'RESTART':
+        return {
+          ...state,
+          stepIndex: 0,
+          run: true,
+          loading: false,
+          key: new Date(),
+        };
+      default:
+        return state;
+    }
+  };
+
   const [tourState, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   useEffect(() => {
